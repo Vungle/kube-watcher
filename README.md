@@ -14,3 +14,4 @@ You must alter the deployment.yaml for your own deployment needs and add your ow
 * Switch to using channels to watch pods
 * Use variables in makefile to reference Vungle
 * Migrate to a telegraf input plugin.
+* Support Terminating
