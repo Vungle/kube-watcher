@@ -23,9 +23,10 @@ func main() {
 			for _, cs := range p.Status.ContainerStatuses {
 				switch {
 				case cs.State.Waiting != nil:
-					eText := fmt.Sprintf(cs.Name, " is waiting. Reason: ", cs.State.Waiting.Reason)
+					eText := fmt.Sprintf("Reason: %s", cs.State.Waiting.Reason)
+					title := fmt.Sprintf("%s pod is in a waiting state", p.Name)
 					e := datadog.Event{
-						Title: "Pod is Waiting",
+						Title: title,
 						Text:  eText,
 						Host:  p.Name,
 					}
