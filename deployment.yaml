@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kube-monitor
+spec:
+  revisionHistoryLimit: 3
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube-monitor
+    spec:
+      containers:
+      - name: kube-monitor
+        image: vungle/kube-monitor:DEPLOY_TAG
+        env:
+          - name: MONITOR_INTERVAL
+            value: "360"
+          - name: DD_API_KEY
+            valueFrom:
+            secretKeyRef:
+              name: kube-watcher-ddog
+              key: dd-api-key
+          - name: DD_APP_KEY
+            valueFrom:
+            secretKeyRef:
+              name: kube-watcher-ddog
+              key: dd-app-key
