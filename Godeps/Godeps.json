@@ -1,5 +1,5 @@
 {
-	"ImportPath": "got/playground",
+	"ImportPath": "github.com/Vungle/kube-watcher",
 	"GoVersion": "go1.6",
 	"Deps": [
 		{
