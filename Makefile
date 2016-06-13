@@ -1,9 +1,7 @@
 all: build push deploy
 
 build:
-	godep get
-	godep save
-	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 godep go build -a -installsuffix cgo -ldflags "-w" -o bin/kube-monitor main.go
+	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -installsuffix cgo -ldflags "-w" -o bin/kube-monitor main.go
 	docker build . | tail -n 1 | awk '{print $$3}' | xargs echo -n > .last_build
 
 push:

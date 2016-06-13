@@ -18,7 +18,7 @@ func main() {
 	interval, _ := strconv.ParseInt(os.Getenv("MONITOR_INTERVAL"), 10, 64)
 	dd_client := datadog.NewClient(os.Getenv("DD_API_KEY"), os.Getenv("DD_APP_KEY"))
 	for {
-		pods, _ := client.Pods("default").List(api.ListOptions{})
+		pods, _ := client.Pods(os.Getenv("NAMESPACE")).List(api.ListOptions{})
 		for _, p := range pods.Items {
 			for _, cs := range p.Status.ContainerStatuses {
 				switch {

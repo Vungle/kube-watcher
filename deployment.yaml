@@ -16,13 +16,15 @@ spec:
         env:
           - name: MONITOR_INTERVAL
             value: "360"
+          - name: NAMESPACE
+            value: "prod"
           - name: DD_API_KEY
             valueFrom:
               secretKeyRef:
-                name: kube-watcher-ddog
-                key: dd-api-key
+                name: datadog-api-keys
+                key: api
           - name: DD_APP_KEY
             valueFrom:
               secretKeyRef:
-                name: kube-watcher-ddog
-                key: dd-app-key
+                name: datadog-api-keys
+                key: kube-watcher
